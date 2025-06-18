@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 import "../css/Navbar.css";
 import { AuthService } from "../service/auth.module.service";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const authService = new AuthService();
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -41,6 +42,14 @@ export default function Navbar() {
     setIsLoggedIn(false);
   };
 
+  const handleSearchClick = () => {
+    navigate("/search");
+  };
+
+  const handleCartClick = () => {
+    navigate("/cart");
+  };
+
   return (
     <>
       <header className={`navbar ${isScrolled ? "scrolled" : ""}`}>
@@ -60,22 +69,22 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="nav-menu">
-            <a href="/collection" className="nav-item">
+            <Link to="/collection" className="nav-item">
               <span>Collection</span>
               <div className="nav-dot"></div>
-            </a>
-            <a href="/shop" className="nav-item">
+            </Link>
+            <Link to="/shop" className="nav-item">
               <span>Shop</span>
               <div className="nav-dot"></div>
-            </a>
-            <a href="/about" className="nav-item">
+            </Link>
+            <Link to="/about" className="nav-item">
               <span>About</span>
               <div className="nav-dot"></div>
-            </a>
-            <a href="/contact" className="nav-item">
+            </Link>
+            <Link to="/contact" className="nav-item">
               <span>Contact</span>
               <div className="nav-dot"></div>
-            </a>
+            </Link>
           </nav>
 
           {/* Right Actions */}
@@ -84,7 +93,7 @@ export default function Navbar() {
             <button
               className="search-btn"
               aria-label="Search"
-              onClick={() => (window.location.href = "/search")}
+              onClick={handleSearchClick}
             >
               <svg
                 width="18"
@@ -101,7 +110,11 @@ export default function Navbar() {
 
             {isLoggedIn ? (
               <>
-                <button className="cart-btn" aria-label="Shopping cart">
+                <button
+                  className="cart-btn"
+                  aria-label="Shopping cart"
+                  onClick={handleCartClick}
+                >
                   <svg
                     width="18"
                     height="18"
