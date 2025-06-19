@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import "../css/Navbar.css";
 import { AuthService } from "../service/auth.module.service";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/logo/LOGO-White.png";
 
 export default function Navbar() {
   const authService = new AuthService();
@@ -58,11 +59,11 @@ export default function Navbar() {
           <div className="nav-logo">
             <Link to="/">
               <img
-                src="./logo/LOGO-White.png"
+                src={logo}
                 height={50}
                 width={100}
                 className="object-fit-cover object-position-center"
-                alt=""
+                alt="AETHERIC FITS"
               />
             </Link>
           </div>

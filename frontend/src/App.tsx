@@ -15,6 +15,7 @@ import OrdersView from "./views/Orders.view";
 import ProfileView from "./views/Profile.view";
 import CartView from "./views/Cart.view";
 import ScrollToTop from "./components/ScrollToTop";
+import ProductDetailsView from "./views/ProductDetails.view";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/orders" element={<OrdersView />} />
             <Route path="/profile" element={<ProfileView />} />
             <Route path="/cart" element={<CartView />} />
+            <Route path="/product/:id" element={<ProductDetailsView />} />
             {/* Add more routes as needed */}
           </Routes>
         </main>
