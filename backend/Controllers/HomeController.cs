@@ -2,11 +2,13 @@
 
 namespace backend.Controllers
 {
+    [ApiController]
+    [Route("/")]
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
-            return View();
+            return Ok("Welcome to the Aetheric Fits API!");
         }
     }
 }

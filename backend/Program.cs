@@ -1,18 +1,15 @@
-using Supabase;
+using Appwrite;
+using Appwrite.Models;
+using Appwrite.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+var client = new Client();
 
-// Add services to the container
-// Add Supabase configuration
-var supabaseUrl = builder.Configuration["Supabase:Url"];
-var supabaseKey = builder.Configuration["Supabase:Key"];
+client
+    .SetEndpoint(builder.Configuration["Appwrite:Endpoint"] ?? "http://localhost/v1") // Your Appwrite endpoint
+    .SetProject(builder.Configuration["Appwrite:ProjectId"] ?? "your_project_id") // Your Appwrite project ID
+    .SetKey(builder.Configuration["Appwrite:ApiKey"] ?? "your_api_key");// Your Appwrite API key;
 
-builder.Services.AddScoped<Supabase.Client>(_ =>
-    new Supabase.Client(supabaseUrl, supabaseKey, new SupabaseOptions
-    {
-        AutoRefreshToken = true,
-        AutoConnectRealtime = true
-    }));
 
 // Add CORS Policy
 builder.Services.AddCors(options =>
